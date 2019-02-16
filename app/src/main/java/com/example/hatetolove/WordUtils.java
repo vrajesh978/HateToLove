@@ -2,6 +2,9 @@ package com.example.hatetolove;
 
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.util.Log;
+import android.widget.ArrayAdapter;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,10 +23,17 @@ public class WordUtils {
 
     public List<List<Integer>> graphList;
     public List<String> words;
+    int V;
+    boolean visited[];
+    Integer parent[];
+    int new_word_index;
 
-    WordUtils(){
+    WordUtils(int V){
+        this.V = V;
         this.graphList = new ArrayList();
         this.words = new ArrayList();
+        visited = new boolean[V];
+        parent = new Integer[V];
     }
 
 
@@ -36,24 +46,27 @@ public class WordUtils {
 
     public void initWordList(Context ctx, String fileName) {
         try{
+            InputStream ir = ctx.getResources().openRawResource(R.raw.util);
             File file = new File(fileName);
-            InputStream is = ctx.getResources().openRawResource(R.raw.utils);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            Log.d("In it ", "Here" );
+            BufferedReader reader = new BufferedReader(new InputStreamReader(ir));
+            Log.d("finally","avse loda");
             String word = null;
             while((word = reader.readLine()) != null){
                 this.words.add(word);
             }
-
         }catch (FileNotFoundException e){
             e.printStackTrace();
         }catch (IOException e){
             e.printStackTrace();
         }
     }
-    public void init(String fileName){
+
+    public void init(Context ctx,String fileName){
         try{
-            File file = new File(fileName);
-            BufferedReader reader = new BufferedReader(new FileReader(file));
+            InputStream ir = ctx.getResources().openRawResource(R.raw.connected_words);
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(ir));
             String text = null;
             while ((text = reader.readLine()) != null){
                 String[] split_string = text.split(" ");
@@ -72,13 +85,13 @@ public class WordUtils {
         }
     }
 
-    private static ArrayList<Object> BFS(ArrayList<ArrayList<Integer>> adj, int s, int d, int V) {
+    int BFS(int s, int d, int V) {
         // Mark all the vertices as not visited(By default
         // set as false)
         ArrayList<Object> result = new ArrayList<>();
-        boolean visited[] = new boolean[V];
-        Integer parent[] = new Integer[V];
+
         // Create a queue for BFS
+        Arrays.fill(visited,false);
         Arrays.fill(parent,-1);
         LinkedList<Integer> queue1 = new LinkedList<Integer>();
         LinkedList<Integer> queue = new LinkedList<Integer>();
@@ -92,7 +105,7 @@ public class WordUtils {
             // Get all adjacent vertices of the dequeued vertex s
             // If a adjacent has not been visited, then mark it
             // visited and enqueue it
-            Iterator<Integer> i = adj.get(s).listIterator();
+            Iterator<Integer> i = graphList.get(s).listIterator();
             while (i.hasNext()) {
                 int n = i.next();
                 prev = n;
@@ -104,9 +117,15 @@ public class WordUtils {
                 }
             }
         }
-        result.add(queue);
-        result.add(parent);
-        return result;
+        int temp = find_parent(d);
+        return new_word_index;
+    }
+    int find_parent(int i){
+        if(parent[i]!=-1) {
+            new_word_index = i;
+            return find_parent(parent[i]);
+        }
+        return i;
     }
 
     //TODO: implement using index of the string
@@ -114,7 +133,4 @@ public class WordUtils {
         graphList = this.getList();
         return graphList.get(s).contains(d);
     }
-
-
-
 }
