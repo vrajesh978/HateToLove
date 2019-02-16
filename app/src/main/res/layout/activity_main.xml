@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:paddingTop="10dp"
-        android:text = "Helloword"
+        android:text = ""
         android:layout_below="@+id/source_word"/>
     <EditText
         android:id="@+id/source_word"
