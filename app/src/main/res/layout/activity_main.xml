@@ -6,29 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id = "@+id/destinaton_word"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="10dp"
-        android:text = ""
-        android:layout_below="@+id/source_word"/>
-    <EditText
-        android:id="@+id/source_word"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:inputType="text"
-        android:text="HelloWord"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"/>
-    <TextView
-        android:id="@+id/notifaction_word"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="10dp"
-        android:text="Helloword"
-        android:layout_below="@id/destinaton_word"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="142dp"
+        android:layout_marginTop="204dp"
+        tools:srcCompat="@tools:sample/avatars[9]" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="141dp"
+        android:layout_height="62dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="145dp"
+        android:layout_marginBottom="173dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Hate2Love"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:typeface="serif" />
 </RelativeLayout>
