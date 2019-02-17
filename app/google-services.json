@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "879875374441",
+    "firebase_url": "https://hackathon-4c0db.firebaseio.com",
+    "project_id": "hackathon-4c0db",
+    "storage_bucket": "hackathon-4c0db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879875374441:android:0df779ef300e20df",
+        "android_client_info": {
+          "package_name": "com.example.hatetolove"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "879875374441-3mpsi1eaapbgjfn1524qhat4s54nv5u3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hatetolove",
+            "certificate_hash": "c08b86268d5d9a7dd27613be611920e8566198df"
+          }
+        },
+        {
+          "client_id": "879875374441-81f7i333g8ttsi6rcqqk30p3sc3q8ofp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBevBaTcOZwtqbPxVn-VFwWU2NkWs--F1U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "879875374441-81f7i333g8ttsi6rcqqk30p3sc3q8ofp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
