@@ -79,7 +79,7 @@ public class WordUtils {
         }
     }
 
-    public int BFS(int s, int d, int V) {
+    public Integer[] BFS(int s, int d, int V) {
         // Mark all the vertices as not visited(By default
         // set as false)
 
@@ -112,7 +112,7 @@ public class WordUtils {
             }
         }
         int temp = find_parent(d);
-        return new_word_index;
+        return parent;
     }
 
     public int find_parent(int i){
