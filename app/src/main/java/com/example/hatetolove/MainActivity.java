@@ -5,8 +5,12 @@ import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.firebase.FirebaseApp;
 
 import org.w3c.dom.Text;
 
@@ -25,17 +29,41 @@ public class MainActivity extends AppCompatActivity {
     public EditText source_word;
     public TextView notification_word;
     private static Context ctx;
+    private WritingView wv;
+    private TextView tv;
 //    public AssetManager assetManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        destination_word = findViewById(R.id.destinaton_word);
-        source_word = findViewById(R.id.source_word);
-        notification_word = findViewById(R.id.notifaction_word);
+        //destination_word = findViewById(R.id.destinaton_word);
+        //source_word = findViewById(R.id.source_word);
+        //notification_word = findViewById(R.id.notifaction_word);
 //        assetManager = getAssets();
+        FirebaseApp.initializeApp(this);
         ctx = getApplicationContext();
+        Button clearBtn = findViewById(R.id.game_clear_btn);
+        wv = findViewById(R.id.writingView);
+        tv = findViewById(R.id.result_txt);
+        TextView verifyBtn = findViewById(R.id.game_ok_btn);
+        clearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tv.setText(getResources().getString(R.string.questionMark));
+                wv.clear();
+                wv.invalidate();
+            }
+        });
+
+        verifyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                wv.testNN();
+                wv.clear();
+                wv.invalidate();
+            }
+        });
         init();
     }
 
@@ -55,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         Random generator = new Random();
         int number = generator.nextInt(2338 + 1 -0) + 0;
         int dest = number;
-        destination_word.setText(wordsNamesList.get(dest));
+        //destination_word.setText(wordsNamesList.get(dest));
         number = generator.nextInt(2338 + 1 -0) + 0;
         while(dest==number || !wu.checkWordInDict(number,dest)){
             number = generator.nextInt(2338 + 1 -0) + 0;
@@ -71,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d("yes ", " " + wordsNamesList.get(temp));
             temp = wu.BFS(temp,dest,2339);
         }
-        source_word.setText(wordsNamesList.get(src));
+        //source_word.setText(wordsNamesList.get(src));
 
     }
 }
