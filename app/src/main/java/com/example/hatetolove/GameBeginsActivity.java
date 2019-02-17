@@ -33,6 +33,7 @@ public class GameBeginsActivity extends AppCompatActivity {
     public Button submit;
     private static Context ctx;
     Integer x;
+    StringBuilder current;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +49,7 @@ public class GameBeginsActivity extends AppCompatActivity {
         ctx = getApplicationContext();
         init();
         x = 0;
+        current = current.append(sourceWordLetter1.getText().toString() + sourceWordLetter2.getText().toString() + sourceWordLetter3.getText().toString() + sourceWordLetter4.getText().toString());
     }
     protected void init(){
         WordUtils wu = new WordUtils(2339);
@@ -119,15 +121,23 @@ public class GameBeginsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 editText = (EditText) findViewById(R.id.edittext);
-                if(x == 1)
+                if(x == 1) {
                     sourceWordLetter1.setText(editText.getText());
-                else if(x ==2)
+                    current.setCharAt(0,sourceWordLetter1.getText().charAt(0));
+                }
+                else if(x ==2) {
                     sourceWordLetter2.setText(editText.getText());
-                else if(x ==3)
+                    current.setCharAt(1,sourceWordLetter2.getText().charAt(1));
+                }else if(x ==3) {
                     sourceWordLetter3.setText(editText.getText());
-                else if(x ==4)
+                    current.setCharAt(2,sourceWordLetter3.getText().charAt(2));
+                }
+                else if(x ==4) {
                     sourceWordLetter4.setText(editText.getText());
+                    current.setCharAt(3,sourceWordLetter4.getText().charAt(3));
+                }
                 editText.setText("");
+
             }
         });
 
