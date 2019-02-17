@@ -2,14 +2,10 @@ package com.example.hatetolove;
 
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.util.Log;
-import android.widget.ArrayAdapter;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -30,8 +26,8 @@ public class WordUtils {
 
     WordUtils(int V){
         this.V = V;
-        this.graphList = new ArrayList();
-        this.words = new ArrayList();
+        graphList = new ArrayList();
+        words = new ArrayList();
         visited = new boolean[V];
         parent = new Integer[V];
     }
@@ -48,12 +44,10 @@ public class WordUtils {
         try{
             InputStream ir = ctx.getResources().openRawResource(R.raw.util);
             File file = new File(fileName);
-            Log.d("In it ", "Here" );
             BufferedReader reader = new BufferedReader(new InputStreamReader(ir));
-            Log.d("finally","avse loda");
             String word = null;
             while((word = reader.readLine()) != null){
-                this.words.add(word);
+                words.add(word);
             }
         }catch (FileNotFoundException e){
             e.printStackTrace();
@@ -74,7 +68,7 @@ public class WordUtils {
                 for(int i =1 ;i <split_string.length;i++) {
                     list1.add(Integer.parseInt(split_string[i]));
                 }
-                this.graphList.add(list1);
+                graphList.add(list1);
             }
         } catch (
                 FileNotFoundException e) {
@@ -85,10 +79,10 @@ public class WordUtils {
         }
     }
 
-    int BFS(int s, int d, int V) {
+    public int BFS(int s, int d, int V) {
         // Mark all the vertices as not visited(By default
         // set as false)
-        ArrayList<Object> result = new ArrayList<>();
+
 
         // Create a queue for BFS
         Arrays.fill(visited,false);
@@ -120,7 +114,8 @@ public class WordUtils {
         int temp = find_parent(d);
         return new_word_index;
     }
-    int find_parent(int i){
+
+    public int find_parent(int i){
         if(parent[i]!=-1) {
             new_word_index = i;
             return find_parent(parent[i]);
@@ -128,9 +123,9 @@ public class WordUtils {
         return i;
     }
 
-    //TODO: implement using index of the string
+
     public boolean checkWordInDict(int s,int d){
-        graphList = this.getList();
+        graphList = getList();
         return graphList.get(s).contains(d);
     }
 }
