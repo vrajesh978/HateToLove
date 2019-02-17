@@ -1,12 +1,15 @@
 package com.example.hatetolove;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -72,6 +75,14 @@ public class MainActivity extends AppCompatActivity {
             temp = wu.BFS(temp,dest,2339);
         }
         source_word.setText(wordsNamesList.get(src));
+
+    }
+
+
+    public void onClickBtnHome(View v)
+    {
+        Toast.makeText(this, "Clicked on Button", Toast.LENGTH_LONG).show();
+        startActivity(new Intent(MainActivity.this, GameBeginsActivity.class));
 
     }
 }
