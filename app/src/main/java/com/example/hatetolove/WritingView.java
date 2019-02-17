@@ -93,8 +93,9 @@ public class WritingView extends View {
         Bitmap  bitmap = BitmapFactory.decodeStream(is);
         */
         Log.d("TESTNN","WORKED");
-        Bitmap b2 = Bitmap.createScaledBitmap(getDrawingCache(), 40, 40, false);
+        Bitmap b2 = Bitmap.createScaledBitmap(BitmapUtil.cropCharacterArea(getDrawingCache()), 28, 28, false);
         Bitmap newBitmap = Bitmap.createBitmap(b2.getWidth(), b2.getHeight(), b2.getConfig());
+        Log.d("BITMAP"," "+newBitmap.getPixel(15,15));
         FirebaseVisionImage image = OCRDetection.getBitmapImage(newBitmap);
         OCRDetection.recognizeText(image);
         Canvas canvas = new Canvas(newBitmap);
