@@ -6,12 +6,16 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.os.Environment;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
+
+import java.io.File;
+import java.io.FileOutputStream;
 
 
 public class WritingView extends View {
@@ -101,7 +105,19 @@ public class WritingView extends View {
         Canvas canvas = new Canvas(newBitmap);
         canvas.drawColor(Color.WHITE);
         canvas.drawBitmap(b2, 0, 0, null);
-
+        String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/mathWithFriendsTmp";
+        File dir = new File(dirPath);
+        if (!dir.exists())
+            dir.mkdirs();
+        File file = new File(dirPath, "HandWriting.bmp");
+        try {
+            FileOutputStream fOut = new FileOutputStream(file);
+            newBitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+            fOut.flush();
+            fOut.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         this.setDrawingCacheEnabled(false);
         b2.recycle();
         newBitmap.recycle();
